@@ -4,12 +4,13 @@ pipeline {
     S3_BUCKET = "frontend-s3-tf-example"
     AWS_REGION = "us-east-1"
   }
-  stages {
-    stage('Checkout') {
-      steps {
-        git 'https://github.com/BhavaniBoyapati/Frontend-App.git'
-      }
+  
+    stages {
+ stage('Checkout Code') {
+    steps {
+        echo "Repo already checked out by Jenkins"
     }
+}
     stage('Build') {
       steps {
         sh '''
