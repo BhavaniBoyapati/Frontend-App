@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/your-username/aws-devops-microservices-project.git'
+        git 'https://github.com/BhavaniBoyapati/Frontend-App.git'
       }
     }
 
