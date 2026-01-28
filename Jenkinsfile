@@ -9,14 +9,14 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/BhavaniBoyapati/Frontend-App.git'
+        git branch: 'main',
+            url: 'https://github.com/BhavaniBoyapati/Frontend-App.git'
       }
     }
 
     stage('Build') {
       steps {
         sh '''
-          cd frontend
           npm install
           npm run build
         '''
@@ -26,7 +26,7 @@ pipeline {
     stage('Upload to S3') {
       steps {
         sh '''
-          aws s3 sync frontend/build s3://$S3_BUCKET --delete
+          aws s3 sync build/ s3://$S3_BUCKET --delete
         '''
       }
     }
@@ -35,8 +35,8 @@ pipeline {
       steps {
         sh '''
           aws cloudfront create-invalidation \
-          --distribution-id E3MOUHKUZD1N7D \
-          --paths "/*"
+            --distribution-id E3MOUHKUZD1N7D \
+            --paths "/*"
         '''
       }
     }
