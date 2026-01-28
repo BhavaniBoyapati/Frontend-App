@@ -25,19 +25,23 @@ pipeline {
 
     stage('Upload to S3') {
       steps {
-        sh '''
-          aws s3 sync frontend/build s3://$S3_BUCKET --delete
-        '''
+        withAWS(credentials: 'aws-jenkins', region: "${AWS_REGION}") {
+          sh '''
+            aws s3 sync frontend/build s3://$S3_BUCKET --delete
+          '''
+        }
       }
     }
 
     stage('Invalidate CloudFront') {
       steps {
-        sh '''
-          aws cloudfront create-invalidation \
-          --distribution-id E3MOUHKUZD1N7D \
-          --paths "/*"
-        '''
+        withAWS(credentials: 'aws-jenkins', region: "${AWS_REGION}") {
+          sh '''
+            aws cloudfront create-invalidation \
+            --distribution-id E3MOUHKUZD1N7D \
+            --paths "/*"
+          '''
+        }
       }
     }
   }
