@@ -7,7 +7,7 @@ async function registerUser() {
   const email = document.getElementById("regEmail").value;
   const password = document.getElementById("regPassword").value;
  
-  const res = await fetch('${API_BASE_URL}/register', {
+const res = await fetch(`${API_BASE_URL}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
