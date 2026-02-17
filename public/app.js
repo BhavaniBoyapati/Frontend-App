@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://mbry.digital"; 
+const API_BASE_URL = "https://api.mbry.digital"; 
 // Change to https://mbry.digital when deployed
  
 // ================= REGISTER =================
