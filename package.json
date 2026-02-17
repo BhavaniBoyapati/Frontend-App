@@ -1,7 +1,11 @@
 {
-  "name": "frontend-app",
+  "name": "Frontend-App",
   "version": "1.0.0",
+  "description": "Microservices Frontend",
   "scripts": {
-    "build": "mkdir -p build && cp -r public/* build/"
+    "start": "serve -s public -l 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
   }
 }
